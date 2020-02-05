@@ -42,20 +42,12 @@ error_log($bot_name);
 error_log($command);
 // DEBUG
 
-// Switch based on what command was provided
-switch($command){
-	case "status":
-		$responseText = lookupPage();
-		break;
-	case "whoami":
-		$responseText = $data['from']['name'];
-		break;
-	case "whoareyou":
-		$responseText = "I am $bot_name, Nice to meet you!";
-		break;
-	default:
-		$user = $data['from']['name'];
-		$responseText = "Sorry $user but that is an Invalid Command ($command)";
+if(file_exists(__DIR__."/".strtolower($bot_name)."_bot.php")){
+	require(__DIR__."/".strtolower($bot_name)."_bot.php");
+}else{
+	$response['type'] = "message";
+	$response['text'] = "This bot is not setup. Please setup the bot and try again.";
+	echo json_encode($response); exit();
 }
 
 $response = array();
