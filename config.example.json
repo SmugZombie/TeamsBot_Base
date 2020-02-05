@@ -1,5 +1,7 @@
 {
     "teams" : {
-        "secret":"NX5/QcLet3Q/0AFJ5D61PG8Hi1Pb4qX5VNOb792C9cM="
+        "secrets": [
+        	"NX5/QcLet3Q/0AFJ5D61PG8Hi1Pb4qX5VNOb792C9cM="
+        ]
     }
 }
