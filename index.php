@@ -1,7 +1,7 @@
 <?php
 # Teams Bot
 # Ron Egli - Github.com/smugzombie
-# V0.2
+# V0.3
 require(__DIR__.'/security.php');
 header('Content-type: application/json');
 
@@ -29,16 +29,20 @@ $bot_name = explode("<at>",explode("</at>", $message_body)[0])[1];
 $bot_regex = '/<at>.*<\/at>\s?/m';
 $command_string = strtolower(str_replace('nbsp', '', preg_replace("/[^A-Za-z0-9 ]/", '', preg_replace($bot_regex, "", $message_body))));
 $command_string_parts = explode(" ", $command_string);
+$argument_string = implode(" ", str_replace($command_string_parts[0]." ","", $command_string));
+$argument_string_parts = explode("", $argument_string);
 
 if(isset($command_string_parts[0])){
 	$command = $command_string_parts[0];
 }
 
 // DEBUG
-error_log(json_encode($data));
-error_log($message_body);
-error_log($bot_name);
-error_log($command);
+if($config['debug']){
+	error_log(json_encode($data));
+	error_log($message_body);
+	error_log($bot_name);
+	error_log($command);
+}
 // DEBUG
 
 if(file_exists(__DIR__."/bots/".strtolower($bot_name)."_bot.php")){
