@@ -28,7 +28,12 @@ $data = json_decode(file_get_contents('php://input'), true);
 $message_body = $data['text'];
 $bot_name = explode("<at>",explode("</at>", $message_body)[0])[1];
 $bot_regex = '/<at>.*<\/at>\s?/m';
-$command = strtolower(str_replace('nbsp', '', preg_replace("/[^A-Za-z0-9 ]/", '', preg_replace($bot_regex, "", $message_body))));
+$command_string = strtolower(str_replace('nbsp', '', preg_replace("/[^A-Za-z0-9 ]/", '', preg_replace($bot_regex, "", $message_body))));
+$command_string_parts = explode(" ", $command_string);
+
+if(isset($command_string_parts[0])){
+	$command = $command_string_parts[0];
+}
 
 // DEBUG
 error_log(json_encode($data));
