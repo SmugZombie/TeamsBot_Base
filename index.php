@@ -1,9 +1,8 @@
 <?php
 # Teams Bot
 # Ron Egli - Github.com/smugzombie
-# V0.1
+# V0.2
 require(__DIR__.'/security.php');
-require(__DIR__.'/functions.php');
 header('Content-type: application/json');
 
 // Load Config
@@ -42,8 +41,8 @@ error_log($bot_name);
 error_log($command);
 // DEBUG
 
-if(file_exists(__DIR__."/".strtolower($bot_name)."_bot.php")){
-	require(__DIR__."/".strtolower($bot_name)."_bot.php");
+if(file_exists(__DIR__."/bots/".strtolower($bot_name)."_bot.php")){
+	require(__DIR__."/bots/".strtolower($bot_name)."_bot.php");
 }else{
 	$response['type'] = "message";
 	$response['text'] = "This bot is not setup. Please setup the bot and try again.";
